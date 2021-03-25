@@ -1,4 +1,5 @@
 import copy
+from node import Node
 
 def main():
     # val = input("Enter your value: ")
@@ -96,7 +97,7 @@ def can_swap_down(current_index,dimension):
     else:
         return True
 
-#Generate all 12 possibilities for given node    
+#Generate all 12 child nodes for given parent node    
 def generateChildren(input_list):
     possible_moves = []
     dimension = len(input_list)
@@ -120,9 +121,16 @@ def generateChildren(input_list):
                 if move not in possible_moves:
                     possible_moves.append(move)
 
-    return possible_moves      
+    nodes = create_nodes(possible_moves, input_list)
+    return nodes      
 
+def create_nodes(states_list, parent_state):
+    nodes = []
+    for state in states_list:
+        node = Node(state, parent_state)
+        nodes.append(node)
 
+    return nodes
 
 if __name__ == '__main__':
     main()
