@@ -1,10 +1,12 @@
 class Node:
     state: []
     parent: None
+    depth: None
 
-    def __init__(self, state, parent):
+    def __init__(self, state, parent, depth):
         self.state = state
         self.parent = parent
+        self.depth = depth
 
     def get_state(self):
         return self.state
