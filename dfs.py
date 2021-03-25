@@ -1,3 +1,5 @@
+import copy
+
 def main():
     # val = input("Enter your value: ")
     val = '((6; 1; 2); (7; 8; 3); (5; 4; 9))'
@@ -5,7 +7,7 @@ def main():
     print(input_list)
     input_list = get_list(input_list)
     print(input_list)
-
+    generateChildren(input_list)
     #------TEST CODE FOR THE SWAPING METHODS------
     # print(input_list)
     # swap_left(input_list,get_index(input_list, 6))
@@ -42,24 +44,32 @@ def get_index(input_list, num):
 
 #-----------------------SWAPING METHODS-----------------------
 def swap_left(input_list,current_index):
-    num_temp = input_list[current_index[0]][current_index[1]+1]
-    input_list[current_index[0]][current_index[1]+1] = input_list[current_index[0]][current_index[1]]
-    input_list[current_index[0]][current_index[1]] = num_temp
+    list_copy = copy.deepcopy(input_list)
+    num_temp = list_copy[current_index[0]][current_index[1]+1]
+    list_copy[current_index[0]][current_index[1]+1] = list_copy[current_index[0]][current_index[1]]
+    list_copy[current_index[0]][current_index[1]] = num_temp
+    return list_copy
 
 def swap_right(input_list,current_index):
-    num_temp = input_list[current_index[0]][current_index[1]-1]
-    input_list[current_index[0]][current_index[1]-1] = input_list[current_index[0]][current_index[1]]
-    input_list[current_index[0]][current_index[1]] = num_temp
+    list_copy = copy.deepcopy(input_list)
+    num_temp = list_copy[current_index[0]][current_index[1]-1]
+    list_copy[current_index[0]][current_index[1]-1] = list_copy[current_index[0]][current_index[1]]
+    list_copy[current_index[0]][current_index[1]] = num_temp
+    return list_copy
     
 def swap_up(input_list,current_index):
-    num_temp = input_list[current_index[0]-1][current_index[1]]
-    input_list[current_index[0]-1][current_index[1]] = input_list[current_index[0]][current_index[1]]
-    input_list[current_index[0]][current_index[1]] = num_temp
+    list_copy = copy.deepcopy(input_list)
+    num_temp = list_copy[current_index[0]-1][current_index[1]]
+    list_copy[current_index[0]-1][current_index[1]] = list_copy[current_index[0]][current_index[1]]
+    list_copy[current_index[0]][current_index[1]] = num_temp
+    return list_copy
 
 def swap_down(input_list,current_index):
-    num_temp = input_list[current_index[0]+1][current_index[1]]
-    input_list[current_index[0]+1][current_index[1]] = input_list[current_index[0]][current_index[1]]
-    input_list[current_index[0]][current_index[1]] = num_temp
+    list_copy = copy.deepcopy(input_list)
+    num_temp = list_copy[current_index[0]+1][current_index[1]]
+    list_copy[current_index[0]+1][current_index[1]] = list_copy[current_index[0]][current_index[1]]
+    list_copy[current_index[0]][current_index[1]] = num_temp
+    return list_copy
 
 #-------------SWAP CHECKING METHODS-------------
 def can_swap_left(current_index,dimension):
@@ -85,7 +95,32 @@ def can_swap_down(current_index,dimension):
         return False
     else:
         return True
-    
+
+#Generate all 12 possibilities for given node    
+def generateChildren(input_list):
+    possible_moves = []
+    dimension = len(input_list)
+    for row in input_list:
+        for j in row:
+            index = get_index(input_list, j)
+            if(can_swap_left(index, dimension)):
+                move = swap_left(input_list, index)
+                if move not in possible_moves:
+                    possible_moves.append(move)
+            if(can_swap_right(index)):
+                move = swap_right(input_list, index)
+                if move not in possible_moves:
+                    possible_moves.append(move)
+            if(can_swap_up(index)):
+                move = swap_up(input_list, index)
+                if move not in possible_moves:
+                    possible_moves.append(move)
+            if(can_swap_down(index, dimension)):
+                move = swap_down(input_list, index)
+                if move not in possible_moves:
+                    possible_moves.append(move)
+
+    return possible_moves      
 
 
 
