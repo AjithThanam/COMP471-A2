@@ -12,30 +12,6 @@ def main():
 	node = Node(input_list, [], 0)
 	start_dfs(node)
 
-	# ---TEST CODE FOR THE GENERATING CHILDREN---
-	# children = generateChildren(node)
-
-	# for child in children:
-	#     print(child.state)
-
-	# ------TEST CODE FOR THE SWAPING METHODS------
-	# print(input_list)
-	# swap_left(input_list,get_index(input_list, 6))
-	# print(input_list)
-	# swap_right(input_list,get_index(input_list, 6))
-	# print(input_list)
-	# swap_down(input_list,get_index(input_list, 6))
-	# print(input_list)
-	# swap_up(input_list,get_index(input_list, 6))
-	# print(input_list)
-
-	# --------TEST CODE FOR THE SWAP CHECKING--------
-	# print(can_swap_left(get_index(input_list, 6),3))
-	# print(can_swap_right(get_index(input_list, 6)))
-	# print(can_swap_up(get_index(input_list, 6)))
-	# print(can_swap_down(get_index(input_list, 6),3))
-
-
 def start_dfs(start_node):
 	solution_node = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 	# solution_node = [[1, 2], [3, 4]
@@ -151,9 +127,6 @@ def get_index(input_list, num):
 			return (input_list.index(sub_list), sub_list.index(num))
 	raise ValueError("'{num}' is not in list".format(num=num))
 
-def test():
-    print("hi")
-
 # -----------------------SWAPING METHODS-----------------------
 def swap_left(input_list, current_index):
 	list_copy = copy.deepcopy(input_list)
@@ -217,7 +190,6 @@ def can_swap_down(current_index, dimension):
 		return True
 
 # Generate all 12 child nodes for given parent node
-
 
 def generateChildren(parent_node):
 	input_list = parent_node.state
