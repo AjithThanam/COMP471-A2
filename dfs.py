@@ -8,7 +8,7 @@ def main():
 	val = '((6; 1; 2); (7; 8; 3); (5; 4; 9))'
 	# val = '((3; 2); (4; 1))'
 	input_list = get_list(parse_input(val))
-
+	
 	node = Node(input_list, [], 0)
 	start_dfs(node)
 
@@ -38,10 +38,10 @@ def main():
 
 def start_dfs(start_node):
 	solution_node = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-	# solution_node = [[1, 2], [3, 4]]
+	# solution_node = [[1, 2], [3, 4]
 	open_stack = []
 	closed_stack = []
-	max_depth = 3
+	max_depth = 10
 
 	open_stack.append(start_node)
 
@@ -51,7 +51,7 @@ def start_dfs(start_node):
 			current_node = open_stack.pop()
 			closed_stack.append(current_node)
 		else:
-			print(current_node.state)
+			#print(current_node.state)
 			closed_stack.append(current_node)
 			current_node = open_stack.pop()
 
@@ -60,15 +60,19 @@ def start_dfs(start_node):
 			print("Solution State Reached: " + str(current_node.state))
 			print("Parent State: " + str(current_node.parent.state))
 			print("*************************************************")
+			output_solution_path(current_node)
+			output_search_path(closed_stack)
 			return None
 
 		while(current_node.depth < max_depth):
-			print(current_node.state)
+			#print(current_node.state)
 			if(current_node.state == solution_node):
 				print("*************************************************")
 				print("Solution State Reached: " + str(current_node.state))
 				print("Parent State: " + str(current_node.parent.state))
 				print("*************************************************")
+				output_solution_path(current_node)
+				output_search_path(closed_stack)
 				return None
 
 			children = generateChildren(current_node)
@@ -80,6 +84,13 @@ def start_dfs(start_node):
 					open_stack.append(state)
 			
 			closed_stack.append(current_node)
+
+			#Ensures that the function doesnt throw an error
+			#when trying to pop at the end of the search
+			if(len(open_stack) == 0):
+				print("No Solution Found..")
+				return None
+
 			current_node = open_stack.pop()
 
 			if(current_node.state == solution_node):
@@ -87,17 +98,42 @@ def start_dfs(start_node):
 				print("Solution State Reached: " + str(current_node.state))
 				print("Parent State: " + str(current_node.parent.state))
 				print("*************************************************")
+				output_solution_path(current_node)
+				output_search_path(closed_stack)
 				return None
 
+def output_solution_path(node):
+	new_file = open("output_files/dfs/solution_path.txt","w+")
+	dimension = len(node.state)
+	solution_path = node.get_solution_path()
+	ctr = 0
+
+	for state in solution_path:
+		while(ctr < dimension):
+			new_file.write(str(state.state[ctr]) + "\n")
+			ctr +=1
+
+		new_file.write("\n")
+		ctr = 0
+
+def output_search_path(closed_stack):
+	new_file = open("output_files/dfs/search_path.txt","w+")
+	dimension = len(closed_stack[0].state)
+	ctr = 0
+
+	for i in reversed(closed_stack):
+		while(ctr < dimension):
+			new_file.write(str(i.state[ctr]) + "\n")
+			ctr +=1
+
+		new_file.write("\n")
+		ctr = 0
 			
-
-
 def is_in_stack(state, stack):
 	for i in range(len(stack)):
 		if state == stack[i].state:
 			return True
 	return False
-
 
 # convert input string to a tuple
 def parse_input(inputStr):
@@ -115,6 +151,8 @@ def get_index(input_list, num):
 			return (input_list.index(sub_list), sub_list.index(num))
 	raise ValueError("'{num}' is not in list".format(num=num))
 
+def test():
+    print("hi")
 
 # -----------------------SWAPING METHODS-----------------------
 def swap_left(input_list, current_index):
@@ -171,7 +209,6 @@ def can_swap_up(current_index):
 		return False
 	else:
 		return True
-
 
 def can_swap_down(current_index, dimension):
 	if(current_index[0] == dimension - 1):

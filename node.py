@@ -19,4 +19,16 @@ class Node:
 
     def set_parent(self, parent):
         self.parent = parent
+    
+    def get_solution_path(self):
+        solution_path = []
+        depth = self.depth
+        current_node = self
+
+        while(depth != -1):
+            solution_path.append(current_node)
+            current_node = current_node.parent
+            depth -= 1
         
+        solution_path.reverse()
+        return solution_path
