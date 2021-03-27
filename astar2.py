@@ -2,6 +2,7 @@ import copy
 import random
 from node import Node
 from queue import PriorityQueue
+from timer import Timer
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
 	node = Node(input_list, [], 0, 12)
 	start_a2(node)
 	
+	
 def start_a2(start_node):
 	solution_node = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 	# solution_node = [[1, 2], [3, 4]
@@ -21,11 +23,17 @@ def start_a2(start_node):
 	closed_stack = []
 	max_depth = 10
 	counter = 0
+	t = Timer()
+	t.start()
 
 	open_queue.put((start_node.f_score, counter, start_node))
 	counter += 1
 
 	while(open_queue.not_empty):
+
+		if t.getTime() >= 60:
+				t.maxTime()
+				return None
 
 		if len(closed_stack) == 0:
 			current_node = open_queue.get()[2]
@@ -42,11 +50,15 @@ def start_a2(start_node):
 			print("*************************************************")
 			output_solution_path(current_node)
 			output_search_path(closed_stack)
+			t.stop()
 			return None
 
 		children = generateChildren(current_node)
 
 		for node in children:
+			if t.getTime() >= 60:
+				t.maxTime()
+				return None
 			if current_node.depth == 0:
 				open_queue.put((node.f_score, counter, node))
 				counter += 1

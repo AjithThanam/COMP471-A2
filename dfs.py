@@ -1,6 +1,7 @@
 import copy
 import random
 from node import Node
+from timer import Timer
 
 
 def main():
@@ -9,7 +10,7 @@ def main():
 	# val = '((3; 2); (4; 1))'
 	input_list = get_list(parse_input(val))
 	
-	node = Node(input_list, [], 0)
+	node = Node(input_list, [], 0, 0)
 	start_dfs(node)
 
 def start_dfs(start_node):
@@ -18,10 +19,16 @@ def start_dfs(start_node):
 	open_stack = []
 	closed_stack = []
 	max_depth = 10
+	t = Timer()
+	t.start()
 
 	open_stack.append(start_node)
 
 	while(len(open_stack) > 0):
+
+		if t.getTime() >= 60:
+			t.maxTime()
+			return None
 
 		if len(closed_stack) == 0:
 			current_node = open_stack.pop()
@@ -38,9 +45,14 @@ def start_dfs(start_node):
 			print("*************************************************")
 			output_solution_path(current_node)
 			output_search_path(closed_stack)
+			t.stop()
 			return None
 
 		while(current_node.depth < max_depth):
+			if t.getTime() >= 60:
+				t.maxTime()
+				return None
+
 			#print(current_node.state)
 			if(current_node.state == solution_node):
 				print("*************************************************")
@@ -49,11 +61,15 @@ def start_dfs(start_node):
 				print("*************************************************")
 				output_solution_path(current_node)
 				output_search_path(closed_stack)
+				t.stop()
 				return None
 
 			children = generateChildren(current_node)
 
 			for state in children:
+				if t.getTime() >= 60:
+					t.maxTime()
+					return None
 				if current_node.depth == 0:
 					open_stack.append(state)
 				elif not is_in_stack(state.state, closed_stack):
@@ -76,6 +92,7 @@ def start_dfs(start_node):
 				print("*************************************************")
 				output_solution_path(current_node)
 				output_search_path(closed_stack)
+				t.stop()
 				return None
 
 def output_solution_path(node):
@@ -223,7 +240,7 @@ def generateChildren(parent_node):
 def create_nodes(states_list, parent_node):
 	nodes = []
 	for state in states_list:
-		node = Node(state, parent_node, parent_node.depth+1)
+		node = Node(state, parent_node, parent_node.depth+1,0)
 		nodes.append(node)
 
 	return nodes
