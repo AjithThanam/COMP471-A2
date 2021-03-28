@@ -1,0 +1,26 @@
+Algorithm name: A star 1 - Manhattan
+
+Total Search Path: 466
+Average Search Path: 23.3
+Total Solution Path: 170
+Average Solution Path: 8.5
+Total 'No Solution': 0
+Average 'No Solution': 0.0
+Total cost: 5146
+Average cost: 257.3
+Total execution time: 0.49183009999999994
+Average execution time: 0.024591504999999996
+***********************************************************************
+Algorithm name: A star 2 - Hamming
+
+Total Search Path: 18521
+Average Search Path: 1234.7333333333333
+Total Solution Path: 99
+Average Solution Path: 6.6
+Total 'No Solution': 5
+Average 'No Solution': 0.25
+Total cost: 176722
+Average cost: 11781.466666666667
+Total execution time: 58.155665600000006
+Average execution time: 3.8770443733333337
+***********************************************************************

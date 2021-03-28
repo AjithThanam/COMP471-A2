@@ -15,8 +15,6 @@ def main():
 	start_id(node)
 	
 	
-
-
 def start_id(start_node):
 	solution_node = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 	# solution_node = [[1, 2], [3, 4]]
@@ -36,7 +34,7 @@ def start_id(start_node):
 
 			if t.getTime() >= 60:
 				t.maxTime()
-				return None
+				return False
 
 			if len(closed_stack) == 0:
 				current_node = open_stack.pop()
@@ -53,13 +51,14 @@ def start_id(start_node):
 				print("*************************************************")
 				output_solution_path(current_node)
 				output_search_path(closed_stack)
+				elapsed_time = t.getTime()
 				t.stop()
-				return None
+				return True, elapsed_time, len(closed_stack), current_node.depth+1, len(closed_stack)
 
 			while(current_node.depth < max_depth):
 				if t.getTime() >= 60:
 					t.maxTime()
-					return None
+					return False
 
 				if(current_node.state == solution_node):
 					print("*************************************************")
@@ -69,15 +68,16 @@ def start_id(start_node):
 					print("*************************************************")
 					output_solution_path(current_node)
 					output_search_path(closed_stack)
+					elapsed_time = t.getTime()
 					t.stop()
-					return None
+					return True, elapsed_time, len(closed_stack), current_node.depth+1, len(closed_stack)
 
 				children = generateChildren(current_node)
 
 				for state in children:
 					if t.getTime() >= 60:
 						t.maxTime()
-						return None
+						return False
 					if current_node.depth == 0:
 						open_stack.append(state)
 					elif not is_in_stack(state.state, closed_stack):
@@ -102,8 +102,9 @@ def start_id(start_node):
 					print("*************************************************")
 					output_solution_path(current_node)
 					output_search_path(closed_stack)
+					elapsed_time = t.getTime()
 					t.stop()
-					return None
+					return True, elapsed_time, len(closed_stack), current_node.depth+1, len(closed_stack)
 		
 		open_stack.clear()
 		closed_stack.clear()

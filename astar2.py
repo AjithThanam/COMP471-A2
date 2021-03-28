@@ -32,8 +32,8 @@ def start_a2(start_node):
 	while(open_queue.not_empty):
 
 		if t.getTime() >= 60:
-				t.maxTime()
-				return None
+			t.maxTime()
+			return False, 0, 0, 0, 0
 
 		if len(closed_stack) == 0:
 			current_node = open_queue.get()[2]
@@ -50,15 +50,16 @@ def start_a2(start_node):
 			print("*************************************************")
 			output_solution_path(current_node)
 			output_search_path(closed_stack)
+			elapsed_time = t.getTime()
 			t.stop()
-			return None
+			return True, elapsed_time, len(closed_stack), current_node.depth+1, total_fscore(closed_stack)
 
 		children = generateChildren(current_node)
 
 		for node in children:
 			if t.getTime() >= 60:
 				t.maxTime()
-				return None
+				return False, 0, 0, 0, 0
 			if current_node.depth == 0:
 				open_queue.put((node.f_score, counter, node))
 				counter += 1
@@ -210,17 +211,23 @@ def generateChildren(parent_node):
 	random.shuffle(nodes)
 	return nodes
 
+def total_fscore(closed_stack):
+	total = 0
+	for node in closed_stack:
+		total += node.f_score
+
+	return total
 
 def create_nodes(states_list, parent_node):
 	nodes = []
 	for state in states_list:
-		f_value = manhattan_distance(state) + parent_node.depth+1
+		f_value = hamming_score(state) + parent_node.depth+1
 		node = Node(state, parent_node, parent_node.depth+1, f_value)
 		nodes.append(node)
 
 	return nodes
 
-def manhattan_distance(state):
+def hamming_score(state):
 	count = 0
 	for row in state:
 		for value in row:
