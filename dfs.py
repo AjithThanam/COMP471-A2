@@ -86,10 +86,10 @@ def start_dfs(start_node):
 			current_node = open_stack.pop()
 
 			if(current_node.state == solution_node):
-				print("*************************************************")
-				print("Solution State Reached: " + str(current_node.state))
-				print("Parent State: " + str(current_node.parent.state))
-				print("*************************************************")
+				# print("*************************************************")
+				# print("Solution State Reached: " + str(current_node.state))
+				# print("Parent State: " + str(current_node.parent.state))
+				# print("*************************************************")
 				output_solution_path(current_node)
 				output_search_path(closed_stack)
 				t.stop()
