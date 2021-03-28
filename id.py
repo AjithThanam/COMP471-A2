@@ -34,7 +34,7 @@ def start_id(start_node):
 
 			if t.getTime() >= 60:
 				t.maxTime()
-				return False
+				return False, 0, 0, 0, 0
 
 			if len(closed_stack) == 0:
 				current_node = open_stack.pop()
@@ -58,7 +58,7 @@ def start_id(start_node):
 			while(current_node.depth < max_depth):
 				if t.getTime() >= 60:
 					t.maxTime()
-					return False
+					return False, 0, 0, 0, 0
 
 				if(current_node.state == solution_node):
 					print("*************************************************")
@@ -77,7 +77,7 @@ def start_id(start_node):
 				for state in children:
 					if t.getTime() >= 60:
 						t.maxTime()
-						return False
+						return False, 0, 0, 0, 0
 					if current_node.depth == 0:
 						open_stack.append(state)
 					elif not is_in_stack(state.state, closed_stack):

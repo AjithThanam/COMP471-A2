@@ -28,7 +28,7 @@ def start_dfs(start_node):
 
 		if t.getTime() >= 60:
 			t.maxTime()
-			return False
+			return False, 0, 0, 0, 0
 
 		if len(closed_stack) == 0:
 			current_node = open_stack.pop()
@@ -52,7 +52,7 @@ def start_dfs(start_node):
 		while(current_node.depth < max_depth):
 			if t.getTime() >= 60:
 				t.maxTime()
-				return False
+				return False, 0, 0, 0, 0
 
 			#print(current_node.state)
 			if(current_node.state == solution_node):
@@ -71,7 +71,7 @@ def start_dfs(start_node):
 			for state in children:
 				if t.getTime() >= 60:
 					t.maxTime()
-					return False
+					return False, 0, 0, 0, 0
 				if current_node.depth == 0:
 					open_stack.append(state)
 				elif not is_in_stack(state.state, closed_stack):
@@ -83,7 +83,7 @@ def start_dfs(start_node):
 			#when trying to pop at the end of the search
 			if(len(open_stack) == 0):
 				print("No Solution Found..")
-				return False
+				return False, 0, 0, 0, 0
 
 			current_node = open_stack.pop()
 

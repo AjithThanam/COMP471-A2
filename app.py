@@ -112,10 +112,10 @@ def write_analysis(no_solution_counter, execution_time, total_cost, solution_len
 	new_file.write("Average 'No Solution': " + str(no_solution_counter/20)+ "\n")
 	new_file.write("Total cost: " + str(total_cost)+ "\n")
 	new_file.write("Average cost: " + str(total_cost/(20-no_solution_counter))+ "\n")
-	new_file.write("Total execution time: " + str(execution_time) + "\n")
-	new_file.write("Average execution time: " + str(execution_time/(20-no_solution_counter))+ "\n")
-	new_file.write("Total execution time (including 'No Solution'): " + str(execution_time + no_solution_counter*60) + "\n")
-	new_file.write("Average execution time (including 'No Solution'): " + str((execution_time + no_solution_counter*60)/(20))+ "\n")
+	new_file.write("Total execution time: " + str(execution_time) + " seconds. \n")
+	new_file.write("Average execution time: " + str(execution_time/(20-no_solution_counter))+ " seconds.\n")
+	new_file.write("Total execution time (including 'No Solution'): " + str(execution_time + no_solution_counter*60) + " seconds. \n")
+	new_file.write("Average execution time (including 'No Solution'): " + str((execution_time + no_solution_counter*60)/(20))+ " seconds. \n")
 	new_file.write("***********************************************************************" + "\n")
 
 # convert input string to a tuple

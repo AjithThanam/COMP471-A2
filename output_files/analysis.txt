@@ -1,26 +1,60 @@
+Algorithm name: Depth-First Search
+
+Total Search Path: 27420
+Average Search Path: 6855.0
+Total Solution Path: 42
+Average Solution Path: 10.5
+Total 'No Solution': 16
+Average 'No Solution': 0.8
+Total cost: 27420
+Average cost: 6855.0
+Total execution time: 35.41039290000003 seconds.
+Average execution time: 8.852598225000008 seconds.
+Total execution time (including 'No Solution'): 995.4103929 seconds.
+Average execution time (including 'No Solution'): 49.770519645 seconds.
+***********************************************************************
+Algorithm name: Iterative-Deepening Search
+
+Total Search Path: 18115
+Average Search Path: 2264.375
+Total Solution Path: 39
+Average Solution Path: 4.875
+Total 'No Solution': 12
+Average 'No Solution': 0.6
+Total cost: 18115
+Average cost: 2264.375
+Total execution time: 40.15527640000016 seconds.
+Average execution time: 5.01940955000002 seconds.
+Total execution time (including 'No Solution'): 760.1552764000002 seconds.
+Average execution time (including 'No Solution'): 38.00776382000001 seconds.
+***********************************************************************
 Algorithm name: A star 1 - Manhattan
 
-Total Search Path: 466
-Average Search Path: 23.3
-Total Solution Path: 170
-Average Solution Path: 8.5
+Total Search Path: 554
+Average Search Path: 27.7
+Total Solution Path: 172
+Average Solution Path: 8.6
 Total 'No Solution': 0
 Average 'No Solution': 0.0
-Total cost: 5146
-Average cost: 257.3
-Total execution time: 0.49183009999999994
-Average execution time: 0.024591504999999996
+Total cost: 6558
+Average cost: 327.9
+Total execution time: 0.2229229000001851 seconds.
+Average execution time: 0.011146145000009256 seconds.
+Total execution time (including 'No Solution'): 0.2229229000001851 seconds.
+Average execution time (including 'No Solution'): 0.011146145000009256 seconds.
 ***********************************************************************
 Algorithm name: A star 2 - Hamming
 
-Total Search Path: 18521
-Average Search Path: 1234.7333333333333
-Total Solution Path: 99
-Average Solution Path: 6.6
-Total 'No Solution': 5
-Average 'No Solution': 0.25
-Total cost: 176722
-Average cost: 11781.466666666667
-Total execution time: 58.155665600000006
-Average execution time: 3.8770443733333337
+Total Search Path: 29526
+Average Search Path: 1845.375
+Total Solution Path: 110
+Average Solution Path: 6.875
+Total 'No Solution': 4
+Average 'No Solution': 0.2
+Total cost: 297278
+Average cost: 18579.875
+Total execution time: 78.1184998999995 seconds.
+Average execution time: 4.882406243749969 seconds.
+Total execution time (including 'No Solution'): 318.1184998999995 seconds.
+Average execution time (including 'No Solution'): 15.905924994999975 seconds.
 ***********************************************************************
