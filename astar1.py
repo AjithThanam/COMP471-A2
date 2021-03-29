@@ -38,9 +38,9 @@ def start_a1(start_node):
 
 	while(open_queue.not_empty):
 
-		# if t.getTime() >= 60:
-		# 	t.maxTime()
-		# 	return False, 0, 0, 0, 0
+		if t.getTime() >= 60:
+			t.maxTime()
+			return False, 0, 0, 0, 0
 
 		if len(closed_stack) == 0:
 			current_node = open_queue.get()[2]
@@ -64,9 +64,9 @@ def start_a1(start_node):
 		children = generateChildren(current_node)
 
 		for node in children:
-			# if t.getTime() >= 60:
-			# 	t.maxTime()
-			# 	return False, 0, 0, 0, 0
+			if t.getTime() >= 60:
+				t.maxTime()
+				return False, 0, 0, 0, 0
 			if current_node.depth == 0:
 				open_queue.put((node.f_score, counter, node))
 				counter += 1
