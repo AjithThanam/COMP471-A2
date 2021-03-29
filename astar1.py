@@ -7,18 +7,25 @@ from timer import Timer
 
 def main():
 	# val = input("Enter your value: ")
-	#val = '((25; 1; 2; 10; 17); (7; 8; 3; 11; 21); (5; 4; 9; 12; 18); (14; 15; 13; 16; 19); (6; 24; 23; 22; 18))'
+	#val = '((3; 2); (4; 1))'
 	val = '((9; 2; 3); (4; 5; 6); (7; 8; 1))'
-	# val = '((3; 2); (4; 1))'
+	#val = '((1; 2; 10; 7); (8; 3; 11; 14); (4; 9; 12; 5); (15; 13; 16; 6))'
+	#val = '((25; 1; 2; 10; 17); (7; 8; 3; 11; 21); (5; 4; 9; 12; 20); (14; 15; 13; 16; 19); (6; 24; 23; 22; 18))'
+	#val = '((25; 1; 2; 10; 17; 26); (7; 8; 3; 11; 21; 27); (5; 4; 9; 12; 20; 28); (14; 15; 13; 16; 19; 29); (6; 24; 23; 22; 18; 30); (32; 31; 33; 35; 34; 36))'
+	#val = '((25; 1; 2; 10; 17; 26; 37); (7; 8; 3; 11; 21; 27; 38); (5; 4; 9; 12; 20; 28; 39); (14; 15; 13; 16; 19; 29; 40); (6; 24; 23; 22; 18; 30; 41); (32; 31; 33; 35; 34; 36; 42); (44; 43; 49; 48; 47; 46; 45))'
+	
 	input_list = get_list(parse_input(val))
 	
 	node = Node(input_list, [], 0, 12)
 	start_a1(node)
 	
 def start_a1(start_node):
-	solution_node = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-	#solution_node = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]
 	# solution_node = [[1, 2], [3, 4]
+	solution_node = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+	#solution_node = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+	#solution_node = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]
+	#solution_node = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23, 24], [25, 26, 27, 28, 29, 30], [31, 32, 33, 34, 35, 36]]
+	#solution_node = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14], [15, 16, 17, 18, 19, 20, 21], [22, 23, 24, 25, 26, 27, 28], [29, 30, 31, 32, 33, 34, 35], [36, 37, 38, 39, 40, 41, 42], [43, 44, 45, 46, 47, 48, 49]]
 	open_queue = PriorityQueue()
 	closed_stack = []
 	max_depth = 10
@@ -31,9 +38,9 @@ def start_a1(start_node):
 
 	while(open_queue.not_empty):
 
-		if t.getTime() >= 60:
-			t.maxTime()
-			return False, 0, 0, 0, 0
+		# if t.getTime() >= 60:
+		# 	t.maxTime()
+		# 	return False, 0, 0, 0, 0
 
 		if len(closed_stack) == 0:
 			current_node = open_queue.get()[2]
@@ -57,9 +64,9 @@ def start_a1(start_node):
 		children = generateChildren(current_node)
 
 		for node in children:
-			if t.getTime() >= 60:
-				t.maxTime()
-				return False, 0, 0, 0, 0
+			# if t.getTime() >= 60:
+			# 	t.maxTime()
+			# 	return False, 0, 0, 0, 0
 			if current_node.depth == 0:
 				open_queue.put((node.f_score, counter, node))
 				counter += 1
@@ -238,7 +245,10 @@ def manhattan_distance(state):
 
 def get_distance(state, num):
 	solution_state = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+	#solution_state = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 	#solution_state = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]]
+	#solution_state = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23, 24], [25, 26, 27, 28, 29, 30], [31, 32, 33, 34, 35, 36]]
+	#solution_state = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14], [15, 16, 17, 18, 19, 20, 21], [22, 23, 24, 25, 26, 27, 28], [29, 30, 31, 32, 33, 34, 35], [36, 37, 38, 39, 40, 41, 42], [43, 44, 45, 46, 47, 48, 49]]
 	solution_index = get_index(solution_state, num)
 	num_index = get_index(state, num)
 	temp1 = abs(solution_index[0] - num_index[0])
