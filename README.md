@@ -34,3 +34,7 @@
 - In the folder "input_files" you may change the data values for each of the 20 3x3 puzzles.
 - Run the python code by entering "python app.py" or "python3 app.py".
 - In the output_files folder, you should find a dfs folder with the search and solution path.
+
+***60 second Timeout method***
+- If you are looking to change the timeout delay or remove the timeout entirely, please filter through the python algorithm files and 
+look for an "if statement" that is checking for "t.getTime() >= 60" and change the value or comment this chunk of code out.
