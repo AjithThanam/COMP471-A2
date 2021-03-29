@@ -1,4 +1,4 @@
-# COMP471-A2
+# COMP472-A2
 **https://github.com/AjithThanam/COMP472-A2**
 
 ***Testing Depth-First Search***
